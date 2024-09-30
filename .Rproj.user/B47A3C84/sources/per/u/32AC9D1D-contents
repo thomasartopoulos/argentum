@@ -1,0 +1,18 @@
+library(testthat)
+test_file("~/Argentum/Argentum/test-argentum.R")
+
+
+install.packages("mockery")
+devtools::document()
+devtools::install()
+devtools::check(document = FALSE)
+
+remove.packages("Argentum")
+devtools::install()
+
+
+devtools::clean_dll()
+devtools::build()
+devtools::install()
+
+packageVersion("mockery")

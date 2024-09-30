@@ -1,0 +1,50 @@
+#' Select Organization
+#'
+#' This function allows the user to select an organization from a list of available organizations.
+#' It can optionally filter the organizations based on a search term.
+#'
+#' @param search An optional search term to filter organizations. Default is NULL.
+#'
+#' @return A data frame containing the selected organization's information, or NULL if no selection is made.
+#'
+#' @importFrom utils menu
+#'
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' # Select an organization without a search term
+#' selected_org <- argentum_select_organization()
+#'
+#' # Select an organization with a search term
+#' selected_org <- argentum_select_organization("Buenos Aires")
+#' }
+argentum_select_organization <- function(search = NULL) {
+  # Get all organizations
+  orgs <- argentum_list_organizations()
+
+  # Filter by search term if provided
+  if (!is.null(search)) {
+    orgs <- orgs[grep(search, orgs$Name, ignore.case = TRUE), ]
+  }
+
+  # If no organizations match the criteria, return NULL
+  if (nrow(orgs) == 0) {
+    message("No organizations found matching the criteria.")
+    return(NULL)
+  }
+
+  # Debug: Print available organizations
+  cat("Available organizations:\n")
+  print(orgs$Name)
+
+  # Create a menu of organizations
+  selection <- menu(orgs$Name, title = "Select an organization:")
+
+  # Return the selected organization or NULL if none selected
+  if (selection == 0) {
+    return(NULL)
+  } else {
+    return(orgs[selection, ])
+  }
+}

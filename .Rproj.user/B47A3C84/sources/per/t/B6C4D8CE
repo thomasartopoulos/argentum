@@ -1,0 +1,26 @@
+{
+    "id": "B6C4D8CE",
+    "path": "~/Argentum/Argentum/tests/testthat/test-argentum.R",
+    "project_path": "tests/testthat/test-argentum.R",
+    "type": "r_source",
+    "hash": "1755162732",
+    "contents": "",
+    "dirty": false,
+    "created": 1727118801238.0,
+    "source_on_save": false,
+    "relative_order": 6,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "178,0",
+        "scrollLine": "152"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1727187535,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1727187535550,
+    "read_only": false,
+    "read_only_alternatives": []
+}
