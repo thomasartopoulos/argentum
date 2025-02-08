@@ -1,0 +1,48 @@
+url: https://thomasartopoulos.github.io/argentum/
+
+
+template:
+  bootstrap: 5
+  bslib:
+    primary: "#2c3e50"
+    navbar-light-brand-color: "#2c3e50"
+    navbar-light-brand-hover-color: "#2c3e50"
+  includes:
+    in_header: |
+      <link rel="icon" type="image/png" href="icon.png">
+
+navbar:
+  structure:
+    left: [intro, reference, articles, tutorials, news]
+    right: [search, github]
+  components:
+    reference:
+      text: Functions
+      href: reference/index.html
+    articles:
+      text: Articles
+      menu:
+      - text: Getting Started with Argentum
+        href: articles/getting-started.html
+      - text: Working with WFS/WMS Services
+        href: articles/argentum.html
+    github:
+      icon: fab fa-github
+      text: "GitHub"
+      href: https://github.com/thomasartopoulos/Argentum
+      aria-label: Argentum GitHub repository
+
+reference:
+- title: Core Functions
+  desc: Main functions for interacting with WFS/WMS services
+  contents:
+  - starts_with("argentum_")
+  - has_keyword("argentum")
+  - matches("argentum_")
+  - -has_keyword("internal")
+
+- title: Internal Functions
+  desc: Internal helper functions
+  contents:
+  - has_keyword("internal")
+  - clean_url
