@@ -6,7 +6,7 @@
 #' It can download all layers from an organization or specific layers by name.
 #'
 #' @param organization A character string specifying the name of the organization
-#' @param output_dir Path to the directory where files will be saved
+#' @param output_dir Path to the directory where files will be saved. Defaults to a temporary directory.
 #' @param layer_names Optional vector of layer names to download. If NULL, downloads all available layers
 #' @param format Output format for the files. One of "gpkg" (GeoPackage), "shp" (Shapefile),
 #'              or "geojson" (GeoJSON)
@@ -19,17 +19,22 @@
 #' # Get available organizations
 #' orgs <- argentum_list_organizations()
 #' if (nrow(orgs) > 0) {
-#'   argentum_download_layers(orgs$Name[1], output_dir = "data/wfs")
+#'   argentum_download_layers(orgs$Name[1], output_dir = tempdir())
 #' }
 #' }
 argentum_download_layers <- function(organization,
-                                     output_dir = "wfs_layers",
+                                     output_dir = file.path(tempdir(), "wfs_layers"),
                                      layer_names = NULL,
                                      format = c("gpkg", "shp", "geojson"),
                                      overwrite = FALSE) {
 
   # Validate and match format argument
   format <- match.arg(format)
+
+  # Prevent using "data" as output directory
+  if (tolower(output_dir) == "data") {
+    stop("Using 'data' as output_dir is not allowed. Please choose another directory.")
+  }
 
   # Create output directory if it doesn't exist
   if (!dir.exists(output_dir)) {
