@@ -6,7 +6,7 @@
 \usage{
 argentum_download_layers(
   organization,
-  output_dir = "wfs_layers",
+  output_dir = file.path(tempdir(), "wfs_layers"),
   layer_names = NULL,
   format = c("gpkg", "shp", "geojson"),
   overwrite = FALSE
@@ -15,7 +15,7 @@ argentum_download_layers(
 \arguments{
 \item{organization}{A character string specifying the name of the organization}
 
-\item{output_dir}{Path to the directory where files will be saved}
+\item{output_dir}{Path to the directory where files will be saved. Defaults to a temporary directory.}
 
 \item{layer_names}{Optional vector of layer names to download. If NULL, downloads all available layers}
 
@@ -39,7 +39,7 @@ Download WFS Layers to Folder
 # Get available organizations
 orgs <- argentum_list_organizations()
 if (nrow(orgs) > 0) {
-  argentum_download_layers(orgs$Name[1], output_dir = "data/wfs")
+  argentum_download_layers(orgs$Name[1], output_dir = tempdir())
 }
 }
 }

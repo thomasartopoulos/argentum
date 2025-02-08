@@ -27,3 +27,4 @@
 ^logo_script\\.R$
 ^wfs_layers$
 ^data
+^news\.md
